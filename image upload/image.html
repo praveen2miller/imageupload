@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>image upload</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            #display {
+                width: 50%;
+                height: 500px;
+                border: 1px solid black;
+                background-position: center;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="file" id="inputimage" />
+        <div id="display"></div>
+    </body>
+    <script>
+        const image_input = document.querySelector("#inputimage");
+        var uploaded_image;
+        image_input.addEventListener("change", function () {
+            const reader = new FileReader();
+            reader.readAsDataURL(this.files[0]);
+            reader.addEventListener("load", function () {
+                uploaded_image = reader.result;
+                document.querySelector("#display").style.backgroundImage = `url(${uploaded_image})`;
+            });
+            function resets() {
+                document.getElementById("inputimage").value = null;
+            }
+        });
+    </script>
+</html>
